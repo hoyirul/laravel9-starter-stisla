@@ -33,7 +33,7 @@
                         </div>
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h4>Login</h4>
+                                <h4 data-id="title">Login</h4>
                             </div>
                             <div class="card-body">
                                 @if (session('status'))
@@ -45,8 +45,8 @@
                                     novalidate="">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input type="email" name="email" value="{{ old('email') }}"
+                                        <label for="email" data-id="lblEmail">Email</label>
+                                        <input type="email" data-id="inputEmail" name="email" value="{{ old('email') }}"
                                             class="form-control @error('email') is-invalid @enderror"
                                             placeholder="Masukkan Alamat Email">
                                         @error('email')
@@ -55,7 +55,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="d-block">
-                                            <label for="password" class="control-label">Password</label>
+                                            <label for="password" data-id="lblPassword" class="control-label">Password</label>
                                             <div class="float-right">
                                                 <a href="/forgot-password" class="text-small">
                                                     Forgot Password?
@@ -63,7 +63,7 @@
                                             </div>
                                         </div>
                                         <!-- <label class="font-weight-bold text-uppercase">Password</label> -->
-                                        <input type="password" name="password"
+                                        <input type="password" data-id="inputPassword" name="password"
                                             class="form-control @error('password') is-invalid @enderror"
                                             placeholder="Masukkan Password">
                                         @error('password')
@@ -71,7 +71,7 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                                        <button data-id="btnLogin" type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
                                             Login
                                         </button>
                                     </div>

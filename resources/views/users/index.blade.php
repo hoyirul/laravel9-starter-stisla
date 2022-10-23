@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">User Management</h2>
+            <h2 class="section-title" data-id="titleUserManagement">User Management</h2>
 
             <div class="row">
                 <div class="col-12">
@@ -23,9 +23,9 @@
                 <div class="col-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h4>User List</h4>
+                            <h4 data-id="userListData">User List</h4>
                             <div class="card-header-action">
-                                <a class="btn btn-icon icon-left btn-primary" href="{{ route('user.create') }}">Create New
+                                <a class="btn btn-icon icon-left btn-primary" data-id="userAdd" href="{{ route('user.create') }}">Create New
                                     User</a>
                                 <a class="btn btn-info btn-primary active import">
                                     <i class="fa fa-download" aria-hidden="true"></i>
@@ -72,8 +72,8 @@
                                     <tbody>
                                         <tr>
                                             <th>#</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
+                                            <th data-id="thName">Name</th>
+                                            <th data-id="thEmail">Email</th>
                                             <th>Created At</th>
                                             <th class="text-right">Action</th>
                                         </tr>
@@ -85,8 +85,8 @@
                                                 <td>{{ $user->created_at}}</td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
-                                                        <a href="{{ route('user.edit', $user->id) }}"
-                                                            class="btn btn-sm btn-info btn-icon "><i
+                                                        <a href="{{ route('user.edit', $user->id) }}" data-id="editUser31"
+                                                            class="btn btn-sm btn-info btn-icon"><i
                                                                 class="fas fa-edit"></i>
                                                             Edit</a>
                                                         <form action="{{ route('user.destroy', $user->id) }}"
@@ -94,7 +94,7 @@
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <input type="hidden" name="_token"
                                                                 value="{{ csrf_token() }}">
-                                                            <button class="btn btn-sm btn-danger btn-icon "><i
+                                                            <button data-id="deleteUser31" class="btn btn-sm btn-danger btn-icon "><i
                                                                     class="fas fa-times"></i> Delete </button>
                                                         </form>
                                                     </div>

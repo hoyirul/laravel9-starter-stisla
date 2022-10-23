@@ -12,11 +12,11 @@
             <a class="nav-link" href="/home"><i class="far fa-square"></i> <span>Blank
                     Page</span></a>
         </li>
-        <li class="nav-item dropdown">
-            <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i>
+        <li class="nav-item dropdown" data-id="dropDownUserManagement2">
+            <a href="#" data-id="dropDownUserManagement" class="nav-link has-dropdown"><i class="fas fa-th-large"></i>
                 <span>User Management</span></a>
             <ul class="dropdown-menu">
-                <li><a class="nav-link " href="{{ route('user.index') }}">Users List</a></li>
+                <li><a class="nav-link" data-id="linkUserList" href="{{ route('user.index') }}">Users List</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">

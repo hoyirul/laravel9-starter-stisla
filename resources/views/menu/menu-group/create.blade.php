@@ -44,10 +44,10 @@
 
                         <div class="form-group">
                             <label>Permission Name</label>
-                            <select class="form-control select2" name="permission_name">
+                            <select class="form-control select2" data-id="chooseRole" name="permission_name">
                                 <option value="">Choose Role</option>
                                 @foreach ($permissions as $permission)
-                                    <option value="{{ $permission->name }}">{{ $permission->name }}</option>
+                                    <option data-id="option" value="{{ $permission->name }}">{{ $permission->name }}</option>
                                 @endforeach
                             </select>
                             @error('permission_name')

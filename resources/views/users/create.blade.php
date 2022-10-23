@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">Tambah User</h2>
+            <h2 class="section-title" data-id="titleAddUser">Tambah User</h2>
 
             <div class="card">
                 <div class="card-header">
@@ -23,7 +23,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="name">Your Name</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
+                            <input type="text" data-id="inputNameUser" class="form-control @error('name') is-invalid @enderror" id="name"
                                 name="name" placeholder="Enter User Name">
                             @error('name')
                                 <div class="invalid-feedback">
@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control @error('email') is-invalid @enderror" id="email"
+                            <input type="text" data-id="inputEmailUser" class="form-control @error('email') is-invalid @enderror" id="email"
                                 name="email" placeholder="Enter User Email" value="{{ old('email') }}">
                             @error('email')
                                 <div class="invalid-feedback">
@@ -43,7 +43,7 @@
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control @error('password') is-invalid @enderror"
+                            <input type="password" data-id="inputPasswordUser" class="form-control @error('password') is-invalid @enderror"
                                 id="password" name="password" placeholder="Enter User Password">
                             @error('password')
                                 <div class="invalid-feedback">
@@ -53,7 +53,7 @@
                         </div>
                 </div>
                 <div class="card-footer text-right">
-                    <button class="btn btn-primary">Submit</button>
+                    <button class="btn btn-primary" data-id="btnAddUser">Submit</button>
                     <a class="btn btn-secondary" href="{{ route('user.index') }}">Cancel</a>
                 </div>
                 </form>
