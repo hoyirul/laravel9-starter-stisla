@@ -5,34 +5,41 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\User;
+use App\Traits\ApiResponse;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Http\Response;
 
 class AuthController extends Controller
 {
-    //
+    use ApiResponse;
+
     public function login(Request $request)
     {
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
-            'device_name' => 'required',
+            // 'device_name' => 'required',
         ]);
 
         $user = User::where('email', $request->email)->first();
-
+        
         if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
                 'email' => ['The provided credentials are incorrect.'],
             ]);
         }
 
-        $user->assignRole('user');
+        // $user->assignRole('user');
         return response()->json(
             [
-                'token' => $user->createToken($request->device_name)->plainTextToken,
+                'code' => 0,
+                'message' => 'success',
+                'data' => $user,
+                'token' => $user->createToken($request->email)->plainTextToken
             ],
             200
         );
@@ -40,11 +47,12 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|email|unique:users',
-            'password' => ['required', 'string', 'min:8', 'confirmed', Password::defaults()],
-            'device_name' => 'required',
+            'password' => ['required', 'string', 'min:6'],
+            // 'device_name' => 'required',
         ]);
 
         $user = User::create([
@@ -55,15 +63,25 @@ class AuthController extends Controller
 
         return response()->json(
             [
-                'token' => $user->createToken($request->device_name)->plainTextToken,
+                'code' => 0,
+                'message' => 'success',
+                'data' => $user,
+                'token' => $user->createToken($request->email)->plainTextToken
             ],
             200
         );
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
-        $request->user()->currentAccessToken()->delete();
-        return response()->noContent();
+        try{
+            auth()->user()->tokens()->delete();
+            return $this->apiSuccess('Tokens Revoked');
+        } catch(\Throwable $e){
+            throw new HttpResponseException($this->apiError(
+                null,
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            ));
+        }
     }
 }
