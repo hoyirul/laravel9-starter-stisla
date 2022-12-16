@@ -21,7 +21,8 @@ class CategoryController extends Controller
         // return $this->respondWithSuccess(
         //     CategoryResource::collection(Category::paginate(5))
         // );
-        return CategoryResource::collection(Category::paginate(5));
+        // return CategoryResource::collection(Category::paginate(5));
+        return Category::all();
     }
 
     /**
